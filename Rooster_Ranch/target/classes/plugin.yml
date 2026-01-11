@@ -1,0 +1,16 @@
+name: Rooster_Ranch
+version: 0.1.0
+main: com.rooster_ranch.RoosterRanchPlugin
+api-version: "1.21"
+author: Rooster_Roost
+description: Farming-simulation skyblock with isolated currency (RC) and a void world called rooster_farms.
+commands:
+  ranch:
+    description: Rooster_Ranch main command.
+    usage: /ranch
+    permission: rooster_ranch.use
+permissions:
+  rooster_ranch.use:
+    default: true
+  rooster_ranch.admin:
+    default: op
