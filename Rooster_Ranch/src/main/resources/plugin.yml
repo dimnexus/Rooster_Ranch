@@ -1,16 +1,33 @@
 name: Rooster_Ranch
-version: 0.1.0
-main: com.rooster_ranch.RoosterRanchPlugin
-api-version: "1.21"
-author: Rooster_Roost
-description: Farming-simulation skyblock with isolated currency (RC) and a void world called rooster_farms.
+version: 1.0.0
+main: com.rooster.ranch.RoosterRanchPlugin
+api-version: 1.21
+description: >-
+  Rooster_Ranch is a farming and economy simulator for Paper 1.21.11. The plugin
+  provides void farm and market worlds, pastes schematics for the community
+  market and player farms, manages a custom currency (RC), and tracks farm
+  upkeep, crop health, animal health and weeds. A detailed scoreboard updates
+  every second on farm and market worlds. Players can select professions with
+  unique starter kits and trust visitors to interact on their islands.
+authors: ["Rooster"]
+
+# Rooster_Ranch depends on WorldEdit to paste schematics. Ensure WorldEdit
+# is installed on the server before enabling this plugin. This dependency
+# allows our plugin to access WorldEdit's API without shading it.
+depend: [WorldEdit]
+
 commands:
-  ranch:
-    description: Rooster_Ranch main command.
-    usage: /ranch
-    permission: rooster_ranch.use
+  farm:
+    description: Manage your farm island
+    usage: /farm <create|home|info|trust|untrust|visit|market|help>
+    aliases: [farms]
+  profession:
+    description: Choose your farming profession
+    usage: /profession
 permissions:
-  rooster_ranch.use:
+  rooster_ranch.command.farm:
+    description: Allows the player to use /farm commands
     default: true
-  rooster_ranch.admin:
-    default: op
+  rooster_ranch.command.profession:
+    description: Allows the player to choose a profession
+    default: true

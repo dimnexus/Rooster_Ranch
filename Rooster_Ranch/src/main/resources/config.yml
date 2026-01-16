@@ -1,0 +1,24 @@
+# Default configuration for Rooster_Ranch plugin
+
+# This file provides default settings for the farming simulator. You can
+# adjust these values to fine‑tune gameplay on your server.
+
+# Number of game ticks between weed spawns on player farms. There are 20
+# ticks per second and 24,000 ticks per Minecraft day.
+weed-spawn-rate: 24000
+
+# Interval in ticks for updating scoreboards. Lower values update more
+# frequently at the cost of server performance. 20 ticks = 1 second.
+scoreboard-update-interval: 20
+
+# Base upkeep percentage decay per day. Farms lose this percentage of
+# their upkeep value every Minecraft day if not maintained.
+upkeep-decay-per-day: 1.0
+
+# Base crop health decay per day. Crops lose this percentage of health
+# every day if not properly tended.
+crop-decay-per-day: 1.0
+
+# Base animal health decay per day. Animals lose this percentage of health
+# every day if not fed.
+animal-decay-per-day: 1.0

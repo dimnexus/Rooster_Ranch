@@ -1,60 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.rooster_ranch</groupId>
-  <artifactId>rooster-ranch</artifactId>
-  <version>0.1.0</version>
-  <packaging>jar</packaging>
+    <groupId>com.rooster.ranch</groupId>
+    <artifactId>Rooster_Ranch</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <name>Rooster_Ranch</name>
-  <description>Farming simulation skyblock plugin with isolated currency and void world.</description>
+    <name>Rooster_Ranch</name>
+    <description>Farming and economy simulator plugin for Paper 1.21.11</description>
 
-  <properties>
-    <maven.compiler.release>21</maven.compiler.release>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <!-- We target Java 17 since newer Paper versions require it -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
-  <repositories>
-    <repository>
-      <id>papermc</id>
-      <url>https://repo.papermc.io/repository/maven-public/</url>
-    </repository>
-  </repositories>
+    <repositories>
+        <!-- PaperMC repository containing Paper API snapshots -->
+        <repository>
+            <id>papermc-public</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <!-- EngineHub repository for WorldEdit dependencies -->
+        <repository>
+            <id>enginehub</id>
+            <url>https://maven.enginehub.org/repo/</url>
+        </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>io.papermc.paper</groupId>
-      <artifactId>paper-api</artifactId>
-      <version>1.21.11-R0.1-SNAPSHOT</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <!-- Paper API for Minecraft 1.21.11. This is provided at runtime by the server. -->
+        <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.21.11-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.13.0</version>
-        <configuration>
-          <release>${maven.compiler.release}</release>
-        </configuration>
-      </plugin>
+        <!-- WorldEdit dependency. We compile against the Bukkit jar stored locally
+             in the libs folder. Because WorldEdit will be provided by a separate
+             plugin on the server, we do not include it in our shaded jar. -->
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+            <version>7.3.18</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/worldedit-bukkit-7.3.18.jar</systemPath>
+        </dependency>
+    </dependencies>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.4.2</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-            </manifest>
-          </archive>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+    <!-- No shading configuration: we rely on the WorldEdit plugin to supply
+         classes at runtime, so the jar will not include WorldEdit. -->
+
 </project>
